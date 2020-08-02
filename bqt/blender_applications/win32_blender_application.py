@@ -6,13 +6,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from contextlib import suppress
 
-import bpy
-
 with suppress(ModuleNotFoundError):
     import win32gui
 
-from PySide2.QtGui import QIcon, QImage, QPixmap
-from PySide2.QtCore import QByteArray, QObject
+from PySide2.QtCore import QObject
 
 from .blender_application import BlenderApplication
 
@@ -21,10 +18,6 @@ class Win32BlenderApplication(BlenderApplication):
     """
     Windows implementation of BlenderApplication
     """
-
-    def __init__(self):
-        super().__init__()
-
 
     @staticmethod
     def _get_application_hwnd() -> int:
@@ -37,7 +30,6 @@ class Win32BlenderApplication(BlenderApplication):
 
         hwnd = win32gui.FindWindow(None, 'blender')
         return hwnd
-
 
     def _on_focus_object_changed(self, focus_object: QObject):
         """

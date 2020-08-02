@@ -14,6 +14,7 @@ from PySide2.QtWidgets import QApplication
 
 from .blender_applications import BlenderApplication
 
+
 # GLOBALS #
 TICK = 1.0 / float(os.getenv("BQT_TICK_RATE", "30"))
 
@@ -29,7 +30,6 @@ class QOperator(bpy.types.Operator):
     def __init__(self):
         super().__init__()
         self._qapp = None
-
 
     def execute(self, context) -> set:
         """
@@ -70,9 +70,11 @@ def load_os_module() -> object:
     if operating_system == 'darwin':
         from .blender_applications.darwin_blender_application import DarwinBlenderApplication
         return DarwinBlenderApplication()
-    if operating_system in ['linux', 'linux2']:
+
+    elif operating_system in ['linux', 'linux2']:
         # TODO: LINUX module
         pass
+
     elif operating_system == 'win32':
         from .blender_applications.win32_blender_application import Win32BlenderApplication
         return Win32BlenderApplication()

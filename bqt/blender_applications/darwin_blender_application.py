@@ -29,7 +29,6 @@ class DarwinBlenderApplication(BlenderApplication):
 
         super().__init__()
 
-
     def _get_application_hwnd(self) -> int:
         """
         This finds the blender application window and collects the
@@ -43,7 +42,6 @@ class DarwinBlenderApplication(BlenderApplication):
             self._ns_window = self.__get_application_window()
 
         return objc.pyobjc_id(self._ns_window.contentView())
-
 
     @staticmethod
     def _get_application_icon() -> QIcon:
@@ -59,7 +57,6 @@ class DarwinBlenderApplication(BlenderApplication):
         icon_path = contents_path / "Resources" / "blender icon.icns"
         return QIcon(str(icon_path))
 
-
     @staticmethod
     def _get_application_window() -> AppKit.NSApp.mainWindow:
         """
@@ -71,7 +68,6 @@ class DarwinBlenderApplication(BlenderApplication):
         ns_window = AppKit.NSApp.mainWindow()
         ns_window.setSharingType_(AppKit.NSWindowSharingReadWrite)
         return ns_window
-
 
     def _on_focus_object_changed(self, focus_object: QObject):
         """
